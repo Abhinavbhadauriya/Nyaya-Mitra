@@ -1,0 +1,16 @@
+<h2>All FAQ's</h2>
+<ul>
+  <% faqs.forEach(faq => { %>
+   <div >
+    <li>Question: <%= faq.question %></li>
+    <li>Answer: <%= faq.answer %></li>
+    </div>
+    <%if(currUser){%>
+    <form action="/faqs/<%= faq._id %>?_method=delete" method="post">
+      <button class="btn btn-dark"> Delete</button>
+    </form>
+    <% } %>
+    <br>
+  <% }) %>
+
+</ul>

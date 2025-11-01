@@ -1,0 +1,18 @@
+<h2>Details</h2>
+<div>
+  <li>Case ID : <%= finedata.caseId %></li>
+  <li>Party Name : <%= finedata.partyName %></li>
+  <li>Fee Type : <%= finedata.feeType %></li>
+  <li>Amount : <%= finedata.amount %></li>
+  <li>Status : <%= finedata.status %></li>
+  <li>Created At :
+    <% if (finedata && finedata.createdAt) { %>
+      <%= new Date(finedata.createdAt).toLocaleString() %>
+    <% } else { %>
+      Not Available
+    <% } %>
+  </li>
+</div>
+<form action="/epayment/pay" method="get">
+  <button class="btn btn-dark">Pay</button>
+</form>

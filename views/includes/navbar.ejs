@@ -1,0 +1,34 @@
+ <nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" >NayaMitra</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link active" href="/">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="/laws">Laws</a></li>
+        <li class="nav-item"><a class="nav-link " href="/faqs">FAQ's</a></li>
+        <li class="nav-item"><a class="nav-link " href="/streams">Live Streaming</a></li>
+        <li class="nav-item"><a class="nav-link " href="/traffic">Traffic Voilation</a></li>
+        <li class="nav-item"><a class="nav-link " href="/epayment">E Payment</a></li>
+      </ul>
+    </div>
+    <div class="collapse navbar-collapse " id="navbarNav">
+      <ul class="navbar-nav">
+        <%if(currUser){%>
+        <li class="nav-item"><a class="nav-link" href="/laws/new">New law</a></li>
+        <li class="nav-item"><a class="nav-link" href="/faqs/new">New FAQ</a></li>
+        <li class="nav-item"><a class="nav-link" href="/streams/new">New Live Stream</a></li>
+        <li class="nav-item"><a class="nav-link " href="/traffic/new"> New Traffic Voilation</a></li>
+        <li class="nav-item"><a class="nav-link " href="/user/logout"> LogOut</a></li>
+
+        <% } %>
+        <%if(!currUser){%>
+        <li class="nav-item"><a class="nav-link " href="/user">SignUp</a></li>
+        <li class="nav-item"><a class="nav-link " href="/user/login">Login</a></li>
+        <% } %>
+      </ul>
+    </div>
+  </div>
+</nav>

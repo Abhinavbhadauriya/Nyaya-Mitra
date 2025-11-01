@@ -1,0 +1,9 @@
+<h2>All past Streams</h2>
+<ul>
+  <% streams.forEach(stream => { %>
+    <li><%= stream.courtName %></li>
+     <a href="<%= stream.youtubeLink %>"><%= stream.youtubeLink %></a>
+    <li><%= stream.startedAt %></li>
+    <br>
+  <% }) %>
+</ul>

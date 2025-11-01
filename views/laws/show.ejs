@@ -1,0 +1,38 @@
+<div class="row">
+  <div class="col-8 offset-2">
+    <div class="card p-3 mb-3">
+      <h3><%= law.title %></h3>
+      <p><strong>Act Number:</strong> <%= law.act_number %></p>
+      <p><strong>Category:</strong> <%= law.category %></p>
+
+      <!-- Loop through all sections -->
+      <div class="mt-3">
+        <% law.sections.forEach(section => { %>
+          <div class="card mb-2 p-2 bg-light">
+            <h5>Section <%= section.section_number %>: <%= section.section_title %></h5>
+            <p><strong>Description:</strong> <%= section.description %></p>
+
+            <% if(section.penalties.length > 0) { %>
+              <p><strong>Penalties:</strong> <%= section.penalties.join(", ") %></p>
+            <% } else { %>
+              <p><strong>Penalties:</strong> None</p>
+            <% } %>
+
+            <% if(section.keywords.length > 0) { %>
+              <p><strong>Keywords:</strong> <%= section.keywords.join(", ") %></p>
+            <% } else { %>
+              <p><strong>Keywords:</strong> None</p>
+            <% } %>
+          </div>
+        <% }) %>
+      </div>
+
+      <p class="text-muted mt-2"><strong>Last Updated:</strong> <%= new Date(law.last_updated).toDateString() %></p>
+    </div>
+    <% if(currUser){ %>
+    <form action="/laws/<%= law._id %>?_method=Delete" method="post">
+        <button class="btn btn-dark">Delete Law</button>
+    </form>
+    <% } %>
+  </div>
+</div>

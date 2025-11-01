@@ -1,0 +1,22 @@
+<h2>Details</h2>
+
+<% trafficdetails.forEach(trafficdetail => { %>
+   <div >
+    <li>vehicleNumber : <%= trafficdetail.vehicleNumber %></li>
+    <li>ownerName : <%= trafficdetail.ownerName %></li>
+    <li>mobileNumber: <%= trafficdetail.mobileNumber %></li>
+    <li>violationType: <%= trafficdetail.violationType %></li>
+    <li>location: <%= trafficdetail.location %></li>
+    <li>fineAmount: <%= trafficdetail.fineAmount %></li>
+    <li>dateOfViolation: <%= trafficdetail.dateOfViolation %></li>
+    <li>status: <%= trafficdetail.status %></li>
+    <li>paymentDate: <%= trafficdetail.paymentDate %></li>
+    <li>eChallanNumber: <%= trafficdetail.eChallanNumber %></li>
+    </div>
+   <form action="/epayment/pay" method="get">
+    <button class="btn btn-dark">pay</button>
+   </form>
+  
+
+    <br>
+  <% }) %>

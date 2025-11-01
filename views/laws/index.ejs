@@ -1,0 +1,11 @@
+<h2>All Laws</h2>
+<ul>
+  <% laws.forEach(law => { %>
+    <li><%= law.title %></li>
+    
+    <form action="/laws/<%= law._id %>" method="get">
+      <button>View</button>
+    </form>
+    
+  <% }) %>
+</ul>
