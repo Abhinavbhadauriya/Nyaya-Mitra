@@ -11,6 +11,23 @@
         <label for="vehicleNumber" class="form-label">Vehicle Number</label>
         <input type="text" class="form-control" id="vehicleNumber" name="vehicleNumber"required>
     </div>
+    <button class="btn-search " type="button" onclick="sendOtp()">Send OTP</button>
+
+  <div class="mb-3">
+    <label for="otp" class="form-label">Enter OTP</label>
+    <input type="text" class="form-control" id="otp" name="otp" required>
+  </div>
     <button class="btn-search "> Search </button>
 </form>
 
+
+<script>
+async function sendOtp() {
+  const mobile = document.getElementById("mobileNumber").value;
+  const vehicle = document.getElementById("vehicleNumber").value;
+
+  const response = await fetch(`/otp?mobileNumber=${mobile}&vehicleNumber=${vehicle}`);
+
+  alert("OTP Sent!");
+}
+</script>

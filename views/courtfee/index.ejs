@@ -8,6 +8,22 @@
         <label for="partyName" class="form-label">Party Name</label>
         <input type="text" class="form-control" id="partyName" name="partyName"required>
     </div>
+        <button class="btn btn-dark " type="button" onclick="sendOtp()">Send OTP</button>
+
+  <div class="mb-3">
+    <label for="otp" class="form-label">Enter OTP</label>
+    <input type="text" class="form-control" id="otp" name="otp" required>
+  </div>
     <button class="btn btn-dark"> Search </button>
 </form>
 
+<script>
+async function sendOtp() {
+  const caseId = document.getElementById("caseId").value;
+  const Name = document.getElementById("partyName").value;
+
+  const response = await fetch(`/otp?caseId=${caseId}&partyName=${Name}`);
+
+  alert("OTP Sent!");
+}
+</script>

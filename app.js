@@ -7,7 +7,7 @@ const methodoverride=require("method-override");
 const dotenv = require("dotenv");
 dotenv.config();
 const session = require('express-session');
-
+const flash = require("connect-flash");
 // Middleware
 app.use(expressLayouts);  // <--- enable layouts
 app.set("view engine", "ejs");
@@ -16,6 +16,7 @@ app.set("layout", "./layouts/boilerplate"); // default layout
 app.use(express.urlencoded({ extended: true }));
 app.use(methodoverride("_method"));
 app.use(express.json()); // middleware to parse JSON
+app.use(flash());
 
 //user authentication
 const passport=require('passport')
@@ -30,9 +31,27 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use((req, res, next) => {
+  res.locals.success = req.flash("success");
+  res.locals.error = req.flash("error");
+  
+  next();
+});
+
 passport.use(new LocalStrategy(user.authenticate()));
 passport.serializeUser(user.serializeUser());
 passport.deserializeUser(user.deserializeUser());
+
+app.get('/otp', (req, res) => {
+  let otp = Math.floor(100000 + Math.random() * 900000);
+  req.session.otp = otp;
+
+  console.log("Generated OTP:", otp);
+
+  req.flash("success", "OTP sent successfully");
+  res.redirect("/traffic");
+});
+
 
 //store currentuser
 app.use((req,res,next)=>{

@@ -5,7 +5,12 @@ module.exports.traficInfoForm=(req, res) => {
 };
 
 module.exports.trafficDetails = async (req, res) => {
-  const { vehicleNumber, mobileNumber } = req.query;
+  const { vehicleNumber, mobileNumber,otp } = req.query;
+      if (!otp || otp != req.session.otp) {
+    req.flash("error", "Please enter correct OTP");
+   
+    return res.redirect("/traffic");
+  }
 
   const trafficdetails = await Traffic.find({
     vehicleNumber,

@@ -8,7 +8,13 @@ router.get('/',(req,res)=>{
 
 router.get('/detail',async(req,res)=>{
     
-    let{caseId,partyName}=req.query;
+    let{caseId,partyName,otp}=req.query;
+
+    if (!otp || otp != req.session.otp) {
+    req.flash("error", "Please enter correct OTP");
+   
+    return res.redirect("/courtfee");
+  }
     const finedata= await courtFee.findOne({caseId,partyName});
     if(!finedata){
         res.send("Invaild Details");
