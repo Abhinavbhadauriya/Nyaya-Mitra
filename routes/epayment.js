@@ -9,7 +9,7 @@ router.get('/',(req,res)=>{
 
 
 router.get("/pay",(req,res)=>{
-    res.send("Pay by UPI")
+    res.render("epayment/qr");
 })
 
 module.exports=router

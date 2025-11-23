@@ -46,7 +46,7 @@ router.post("/login",
   }),
   (req, res) => {
     // success case handler
-    res.redirect("/laws"); 
+    res.redirect("/"); 
   }
 );
 
@@ -58,7 +58,7 @@ router.get("/logout", (req, res, next) => {
             return res.send("Something went wrong");
         }
         // Redirect only if logout is successful
-        res.redirect("/laws");
+        res.redirect("/");
     });
 });
 

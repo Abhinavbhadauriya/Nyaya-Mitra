@@ -1,0 +1,162 @@
+<head>
+  <link rel="stylesheet" href="/css/home.css">
+</head>
+  
+ 
+
+    <!-- Image Slider -->
+    <section class="slider">
+      <div class="slides fade">
+        <img src="/images/slider1.jpg" alt="Slide 1" />
+      </div>
+      <div class="slides fade">
+        <img src="/images/slider2.jpg" alt="Slide 2" />
+      </div>
+      <div class="slides fade">
+        <img src="/images/slider3.jpg" alt="Slide 3" />
+      </div>
+    </section>
+      
+    
+    <!-- About Section -->
+    <section class="about">
+      <h2>About Us</h2>
+      <p>
+        Nyaya Mitra is a legal assistance platform dedicated to bridging the gap between citizens and justice. 
+        It simplifies access to legal resources, provides transparent guidance, and fosters trust in the judicial system. 
+        Our goal is to make justice accessible, transparent, and citizen-friendly through technology.
+      </p>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="mission">
+      <h2>Our Mission</h2>
+      <p>
+        Our mission is to ensure timely access to justice for every citizen of India. 
+        We aim to empower individuals by providing legal awareness, digital tools, and expert support. 
+        Through innovation, we aspire to strengthen the judicial framework and promote equality under the law.
+      </p>
+    </section>
+
+   
+    <!-- <form action="/chat" method="get">
+      <button>chat</button>
+    </form> -->
+
+
+<link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
+
+<div id="n8n-chat"></div>
+
+<script type="module">
+  import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+
+  // Create the chat widget
+  createChat({
+    webhookUrl: 'http://localhost:5678/webhook/00e5454e-71b0-4b80-9189-9a273b030828/chat',
+    target: '#n8n-chat',
+    mode: 'window',
+    loadPreviousSession: true,
+    enableStreaming: true,
+    showWelcomeScreen: false,
+    initialMessages: [
+		'Hi there! 👋',
+		'My name is NyayaMitra. What can I do for you today?😊'
+	],
+    i18n: {
+      en: {
+        
+        title: 'NyayaMitra 🤖',
+        subtitle: 'Ask me anything about court hearings or related data!',
+        inputPlaceholder: 'Type your question...',
+        getStarted: 'Start New Chat',
+        
+      },
+    },
+  });
+
+  // Inject your theme dynamically AFTER chat loads
+  const style = document.createElement('style');
+  style.innerHTML = `
+    :root {
+      --chat--color-primary: #6c63ff;
+      --chat--color-primary-shade-50: #5a54e6;
+      --chat--color-primary-shade-100: #4a44d0;
+      --chat--color-secondary: #00c9a7;
+      --chat--color-secondary-shade-50: #00b395;
+      --chat--color-secondary-shade-100: #009f85;
+      --chat--color-light: #f4f6fa;
+      --chat--color-dark: #0e0e2c;
+      --chat--border-radius: 1rem;
+      --chat--spacing: 1rem;
+      --chat--window--width: 420px;
+      --chat--window--height: 640px;
+      --chat--font-family: 'Poppins', 'Segoe UI', Roboto, sans-serif;
+      --chat--header--background: linear-gradient(135deg, var(--chat--color-primary), var(--chat--color-secondary));
+      --chat--message--bot--background: #ffffffcc;
+      --chat--message--user--background: var(--chat--color-primary);
+      --chat--toggle--background: var(--chat--color-primary);
+      --chat--footer--background: rgba(255, 255, 255, 0.65);
+    }
+
+    .chat-message {
+      max-width: 65%;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      animation: fadeInUp 0.25s ease;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background-color: rgba(108, 99, 255, 0.4);
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background-color: rgba(108, 99, 255, 0.6);
+    }
+  `;
+  document.head.appendChild(style);
+</script>
+    <!-- Footer Section -->
+    <footer>
+      <div class="footer-content">
+        <div class="footer-left">
+          <h3>Nyaya Mitra</h3>
+          <p>Connecting Citizens to Justice with Transparency and Trust.</p>
+        </div>
+
+        <div class="footer-center">
+          <p><strong>Email:</strong> nyayamitrasupport@gmail.com</p>
+          <p>
+            <strong>YouTube:</strong>
+            <a href="https://www.youtube.com/" target="_blank">Nyaya Mitra Official</a>
+          </p>
+        </div>
+
+        <div class="footer-right">
+          <p>© 2025 Nyaya Mitra. All Rights Reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+
+    <script>
+      let index = 0;
+      function showSlides() {
+        let slides = document.querySelectorAll(".slides");
+        slides.forEach((slide) => (slide.style.display = "none"));
+        index++;
+        if (index > slides.length) index = 1;
+        slides[index - 1].style.display = "block";
+        setTimeout(showSlides, 3000);
+      }
+      showSlides();
+    </script>
+   
+  

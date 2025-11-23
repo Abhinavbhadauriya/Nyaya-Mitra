@@ -1,4 +1,7 @@
-<h2>All past Streams</h2>
+<link rel="stylesheet" href="/css/streamindex.css">
+
+<div class="streams-section">
+<h2>All Streams</h2>
 <ul>
   <% streams.forEach(stream => { %>
     <li><%= stream.courtName %></li>
@@ -7,3 +10,4 @@
     <br>
   <% }) %>
 </ul>
+</div>

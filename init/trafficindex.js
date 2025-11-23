@@ -23,4 +23,6 @@ const initDb=async(req,res)=>{
     console.log("Data Inserted");
 }
 
+
+
 initDb();

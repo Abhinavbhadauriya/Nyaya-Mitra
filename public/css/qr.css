@@ -1,0 +1,39 @@
+
+/* Heading styling */
+h1 {
+  margin-bottom: 20px;
+  color: #1307f7;
+  font-size: 40px;
+  font-weight: bold;
+  text-align: center;
+  letter-spacing: 1px;
+
+}
+
+/* Image styling */
+img {
+  display: block;       
+  margin: 20px auto;     
+  width: 400px;        
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Hover effect */
+img:hover {
+  transform: scale(1.05);
+}
+
+/* Responsive image size */
+@media (max-width: 600px) {
+  img {
+    width: 180px;
+  }
+
+  h1 {
+    font-size: 22px;
+    font: weight 300px;;
+  }
+}

@@ -4,15 +4,20 @@ module.exports.traficInfoForm=(req, res) => {
   res.render("traffic/index");
 };
 
-module.exports.trafficDetails= async (req, res) => {
+module.exports.trafficDetails = async (req, res) => {
   const { vehicleNumber, mobileNumber } = req.query;
- 
+
   const trafficdetails = await Traffic.find({
-    vehicleNumber: vehicleNumber,
+    vehicleNumber,
     mobileNumber
   });
 
-  res.render("traffic/detail", { trafficdetails });
+
+  if (!trafficdetails || trafficdetails.length === 0) {
+    return res.send("Invalid Details");
+  }
+
+  res.render("traffic/detail", { trafficdetails });
 };
 
 module.exports.newTrafficVoilationForm=(req,res)=>{

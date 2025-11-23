@@ -1,0 +1,63 @@
+
+body{
+  background-color: #4ee7f0;
+  /* overflow-y: hidden; */
+}
+/* Center the login form */
+.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 50px); /* adjust based on navbar height */
+  background-color: #4ee7f0; /* your light blue theme */
+}
+
+/* Login box styling */
+.login-box {
+  background-color: #fafae4 ;
+  padding: 2rem 2.5rem;
+  border-radius: 25px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  width: 450px;
+  text-align: center;
+}
+
+.login-box h2 {
+  color: #003366;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+
+.login-box label {
+  color: #003366;
+  font-weight: 500;
+  display: block;
+  text-align: left;
+  margin-bottom: 5px;
+}
+
+.login-box input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  outline: none;
+}
+
+.login-box button {
+  background-color: #ffcc00;
+  color: #003366;
+  border: none;
+  padding: 10px;
+  width: 100%;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.login-box button:hover {
+  background-color: #ffc107;
+  transform: translateY(-2px);
+}

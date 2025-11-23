@@ -1,17 +1,18 @@
+<link rel="stylesheet" href="/css/detail.css">
 <h2>Details</h2>
 
 <% trafficdetails.forEach(trafficdetail => { %>
    <div >
-    <li>vehicleNumber : <%= trafficdetail.vehicleNumber %></li>
-    <li>ownerName : <%= trafficdetail.ownerName %></li>
-    <li>mobileNumber: <%= trafficdetail.mobileNumber %></li>
-    <li>violationType: <%= trafficdetail.violationType %></li>
-    <li>location: <%= trafficdetail.location %></li>
-    <li>fineAmount: <%= trafficdetail.fineAmount %></li>
-    <li>dateOfViolation: <%= trafficdetail.dateOfViolation %></li>
-    <li>status: <%= trafficdetail.status %></li>
-    <li>paymentDate: <%= trafficdetail.paymentDate %></li>
-    <li>eChallanNumber: <%= trafficdetail.eChallanNumber %></li>
+    <li>Vehicle Number : <%= trafficdetail.vehicleNumber %></li>
+    <li>OwnerName : <%= trafficdetail.ownerName %></li>
+    <li>MobileNumber: <%= trafficdetail.mobileNumber %></li>
+    <li>ViolationType: <%= trafficdetail.violationType %></li>
+    <li>Location: <%= trafficdetail.location %></li>
+    <li>Fine Amount: <%= trafficdetail.fineAmount %></li>
+    <li>DateOf Violation: <%= trafficdetail.dateOfViolation %></li>
+    <li>Status: <%= trafficdetail.status %></li>
+    <li>Payment Date: <%= trafficdetail.paymentDate %></li>
+    <li>Challan Number: <%= trafficdetail.eChallanNumber %></li>
     </div>
    <form action="/epayment/pay" method="get">
     <button class="btn btn-dark">pay</button>

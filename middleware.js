@@ -1,5 +1,5 @@
 module.exports.isLogin = (req, res, next) => {
-    if (!req.isAuthenticated()) {  // ✅ fixed function name
+    if (!req.isAuthenticated()) {  
         return res.redirect('/user/login');
     }
     next(); 

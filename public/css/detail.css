@@ -1,0 +1,44 @@
+
+  
+
+/* Heading "Details" */
+h2 {
+  text-align: center;
+  font-size: 28px;
+  margin: 20px ;
+  margin-bottom: 20px;
+  color: #212529;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+ 
+
+/* Styling for each detail line (li) */
+/* li {
+  list-style: none;
+  font-size: 10px;
+  color: #333;
+  margin: 10px 0;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #e9ecef;
+} */
+
+/* Pay button styling */
+button.btn.btn-dark {
+  display: block;
+  margin: 20px auto;
+  width: 200px;
+  padding: 10px;
+  background-color:  #0b3d91;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button.btn.btn-dark:hover {
+  background-color: #ffcc00;
+}

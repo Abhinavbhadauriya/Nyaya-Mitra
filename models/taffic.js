@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const schema=mongoose.Schema;
-const trafficViolationSchema = new schema({
+const traffic = new schema({
   vehicleNumber: {
     type: String,
     required: true,
@@ -66,6 +66,7 @@ const trafficViolationSchema = new schema({
   },
 });
 
-const TrafficViolation = mongoose.model("TrafficViolation", trafficViolationSchema);
+const Traffic = mongoose.model("Traffic", traffic);
 
-module.exports = TrafficViolation;
+module.exports = Traffic;
+

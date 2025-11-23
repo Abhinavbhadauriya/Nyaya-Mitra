@@ -6,6 +6,8 @@ const Traffic = require("../models/taffic");
 const router = express.Router();
 const trafficController=require('../controllers/traffic')
 
+
+
 // Home page
 router.get("/", trafficController.traficInfoForm);
 

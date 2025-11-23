@@ -23,6 +23,7 @@ const LocalStrategy=require('passport-local')
 const user=require('./models/user')
 app.use(session({
   secret: process.env.SECRET,
+  
   resave: false,
   saveUninitialized: false
 }));
@@ -70,10 +71,16 @@ app.use("/courtfee", courtfeeRoutes);
 const userRoutes = require("./routes/user");
 app.use("/user", userRoutes);
 
+app.use(express.static(path.join(__dirname, "public")));
+
 // Root
 app.get("/", (req, res) => {
-  res.send("Welcome");
+  res.render("home.ejs");
 });
 
+// app.get("/chat",(req,res)=>{
+//   res.render("chat.ejs");
+//   console.log("send sucessfully")
+// })
 // Server
-app.listen(8080, () => console.log("Running on Port 8080"));
+app.listen(3030, () => console.log("Running on Port 3030"));
