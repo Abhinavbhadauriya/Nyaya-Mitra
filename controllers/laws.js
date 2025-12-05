@@ -1,8 +1,14 @@
 const laws=require("../models/law");
 
 module.exports.index=async (req, res) => {
-  const allLaws = await laws.find({});
-  res.render("laws/index", { laws: allLaws });
+  try{
+      const allLaws = await laws.find({});
+      res.render("laws/index", { laws: allLaws });
+  }catch(err){
+      req.flash("error","Some Server Error Occure Please Try Again");
+      res.redirect("/");
+  }
+
 };
 
 //new law
@@ -32,23 +38,37 @@ module.exports.saveLawToDB=async (req, res) => {
     });
 
     await newLaw.save();
+    req.flash("success","New Law Saved");
     res.redirect("/laws");
   } catch (err) {
     console.error(err);
-    res.send("Error creating law");
+    req.flash("error","New Law Not Saved Try Again");
+    res.redirect("/laws/new");
   }
 }
 
 //show route
 module.exports.lawDetail=async(req,res)=>{
+  try{
     const {id}=req.params;
     const law=await laws.findById(id);
     res.render("laws/show.ejs",{law});
+  }catch(err){
+    req.flash("error","Can Not Find The Law");
+    res.redirect("/laws");
+  }
+    
 };
 
 //delete
 module.exports.deleteLaw=async(req,res)=>{
+  try{
     const {id}=req.params;
     await laws.findByIdAndDelete(id);
     res.redirect("/laws");
+  }catch(err){
+    req.flash("error","Error To Delete A Law");
+    res.redirect("/laws");
+  }
+    
 };

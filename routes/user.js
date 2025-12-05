@@ -2,6 +2,7 @@ const express=require("express");
 const router=express.Router();
 const user=require('../models/user');
 const passport=require('passport')
+const { isLogin } = require("../middleware");
 
 router.get("/",(req,res)=>{
     res.render("user/verify")
@@ -42,24 +43,29 @@ router.get("/login",(req,res)=>{
 router.post("/login",
   passport.authenticate("local", {
     failureFlash: true,
-    failureRedirect: "/user/login", // must match your router prefix
+    failureRedirect: "/user/login",
   }),
   (req, res) => {
-    // success case handler
+    
+    req.flash("success","Welcome")
     res.redirect("/"); 
   }
 );
 
-router.get("/logout", (req, res, next) => {
-    req.logOut((err) => {
+router.get("/logout", isLogin, (req, res, next) => {
+    req.logout((err) => {
         if (err) {
             console.log(err);
-            // Send only one response if an error occurs
-            return res.send("Something went wrong");
+            req.flash("error", "Something Went Wrong");
+            return res.redirect("/"); 
         }
-        // Redirect only if logout is successful
-        res.redirect("/");
+
+        req.flash("success", "Logged Out Successfully");
+        res.redirect("/");              
     });
 });
+
+
+
 
 module.exports=router;

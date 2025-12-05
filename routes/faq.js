@@ -13,7 +13,7 @@ router.get('/',faqcontroller.index)
 //Add FAQ
 router.get("/new",isLogin,faqcontroller.newfaqform)
 //Insert Into Db
-router.post("/",faqcontroller.saveToDb)
+router.post("/",isLogin,faqcontroller.saveToDb)
 
 //Delete Faq
 router.delete("/:id",isLogin,faqcontroller.DeleteFaq)

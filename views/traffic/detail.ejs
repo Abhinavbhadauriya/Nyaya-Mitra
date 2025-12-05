@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="/css/detail.css">
 <h2>Details</h2>
-
+<% if(trafficdetails && trafficdetails.length > 0) {%>
 <% trafficdetails.forEach(trafficdetail => { %>
    <div >
     <li>Vehicle Number : <%= trafficdetail.vehicleNumber %></li>
@@ -21,3 +21,8 @@
 
     <br>
   <% }) %>
+
+  <% }else{ %>
+
+    <h4>NO RECORD FOUND</h4>
+    <% } %>

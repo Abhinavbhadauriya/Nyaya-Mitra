@@ -6,23 +6,24 @@ module.exports.traficInfoForm=(req, res) => {
 
 module.exports.trafficDetails = async (req, res) => {
   const { vehicleNumber, mobileNumber,otp } = req.query;
+  try{
       if (!otp || otp != req.session.otp) {
     req.flash("error", "Please enter correct OTP");
    
     return res.redirect("/traffic");
-  }
+    }
 
-  const trafficdetails = await Traffic.find({
+    const trafficdetails = await Traffic.find({
     vehicleNumber,
     mobileNumber
-  });
+    });
 
-
-  if (!trafficdetails || trafficdetails.length === 0) {
-    return res.send("Invalid Details");
+    res.render("traffic/detail", { trafficdetails });
+  }catch(err){
+    console.error(err);
+    req.flash("error","Error to find traffic record")
+    res.redirect('/traffic');
   }
-
-  res.render("traffic/detail", { trafficdetails });
 };
 
 module.exports.newTrafficVoilationForm=(req,res)=>{
@@ -30,11 +31,18 @@ module.exports.newTrafficVoilationForm=(req,res)=>{
 };
 
 module.exports.saveTrafficVoilationInDb=async(req,res)=>{
-  const newtrafficVoilation=new Traffic(req.body);
+  try{
+    const newtrafficVoilation=new Traffic(req.body);
  
-  await newtrafficVoilation.save();
-  console.log(newtrafficVoilation)
-  res.redirect("/traffic");
+    await newtrafficVoilation.save();
+    console.log(newtrafficVoilation)
+    req.flash("success","Data Saved Successfully");
+    res.redirect("/traffic");
+  }catch(err){
+    console.error(err);
+    req.flash("error","E-Challan Number Already present")
+    res.redirect('/traffic/new')
+  }
 };
 
 module.exports.deleteTrafficVoilationDetail=async (req, res) => {
@@ -44,6 +52,7 @@ module.exports.deleteTrafficVoilationDetail=async (req, res) => {
     res.redirect("/traffic/detail");
   } catch (err) {
     console.error(err);
-    res.status(500).send("Error deleting traffic record");
+    req.flash("error","error to delete Traffic Voilation")
+    res.redirect("/traffic/detail");
   }
 };

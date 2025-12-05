@@ -12,7 +12,7 @@ router.get("/", lawController.index);
 router.get("/new",isLogin,lawController.newLawForm);
 
 //add law into Db
-router.post("/",lawController.saveLawToDB );
+router.post("/",isLogin,lawController.saveLawToDB );
 
 
 //show law

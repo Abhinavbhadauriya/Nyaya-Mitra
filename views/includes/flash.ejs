@@ -1,11 +1,29 @@
-<% if(success&&success.length){ %>
-  <div class="alert alert-success">
-    <%= success %>
-  </div>
-<% } %>
+<head>
+ <style>
+  .flash-overlay {
+    position: fixed;
+    top: 15%;
+    left: 2%;   
+    z-index: 9999; 
+    min-width: 250px;
+  }
+</style>
 
-<% if(error&&error.length){ %>
-  <div class="alert alert-danger">
-    <%= error %>
-  </div>
-<% } %>
+</head>
+
+<div class="flash-overlay">
+  <% if (success && success.length) { %>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <%= success %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+  <% } %>
+
+  <% if (error && error.length) { %>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <%= error %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+  <% } %>
+</div>
+

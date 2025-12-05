@@ -2,14 +2,14 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const path = require("path");
-const expressLayouts = require("express-ejs-layouts"); // <--- add this
+const expressLayouts = require("express-ejs-layouts"); 
 const methodoverride=require("method-override");
 const dotenv = require("dotenv");
 dotenv.config();
 const session = require('express-session');
 const flash = require("connect-flash");
 // Middleware
-app.use(expressLayouts);  // <--- enable layouts
+app.use(expressLayouts);  
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.set("layout", "./layouts/boilerplate"); // default layout
@@ -23,10 +23,15 @@ const passport=require('passport')
 const LocalStrategy=require('passport-local')
 const user=require('./models/user')
 app.use(session({
-  secret: process.env.SECRET,
-  
+  secret: process.env.SECRET,  
   resave: false,
-  saveUninitialized: false
+  saveUninitialized: false,
+  cookie :{
+    expires : Date.now()+30*24*60*60*1000,
+    maxAge:30*24*60*60*1000,
+    httpOnly:true,
+    signed:true
+  }
 }));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -48,7 +53,6 @@ app.get('/otp', (req, res) => {
 
   console.log("Generated OTP:", otp);
 
-  req.flash("success", "OTP sent successfully");
   res.redirect("/traffic");
 });
 
@@ -97,9 +101,6 @@ app.get("/", (req, res) => {
   res.render("home.ejs");
 });
 
-// app.get("/chat",(req,res)=>{
-//   res.render("chat.ejs");
-//   console.log("send sucessfully")
-// })
+
 // Server
-app.listen(3030, () => console.log("Running on Port 3030"));
+app.listen(8080, () => console.log("Running on Port 8080"));

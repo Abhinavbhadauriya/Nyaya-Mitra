@@ -4,7 +4,8 @@ const Traffic = require("../models/taffic");
 // const axios = require("axios");
 
 const router = express.Router();
-const trafficController=require('../controllers/traffic')
+const trafficController=require('../controllers/traffic');
+const { isLogin } = require("../middleware");
 
 
 
@@ -16,12 +17,12 @@ router.get("/", trafficController.traficInfoForm);
 router.get("/detail",trafficController.trafficDetails);
 
 //add new 
-router.get('/new',trafficController.newTrafficVoilationForm);
+router.get('/new',isLogin,trafficController.newTrafficVoilationForm);
 
-router.post('/',trafficController.saveTrafficVoilationInDb)
+router.post('/',isLogin,trafficController.saveTrafficVoilationInDb)
 
 //delete
-router.delete('/:id',trafficController.deleteTrafficVoilationDetail);
+router.delete('/:id',isLogin,trafficController.deleteTrafficVoilationDetail);
 
 module.exports = router;
 

@@ -1,6 +1,9 @@
 <link rel="stylesheet" href="/css/courtdetail.css">
 <h2>Details</h2>
+
+<% if(finedata){ %>
 <div>
+  
   <li>Case ID : <%= finedata.caseId %></li>
   <li>Party Name : <%= finedata.partyName %></li>
   <li>Fee Type : <%= finedata.feeType %></li>
@@ -13,7 +16,12 @@
       Not Available
     <% } %>
   </li>
+  
 </div>
 <form action="/epayment/pay" method="get">
   <button class="btn ">Pay</button>
 </form>
+<% }else{ %>
+
+    <h4>NO RECORD FOUND</h4>
+    <% } %>
