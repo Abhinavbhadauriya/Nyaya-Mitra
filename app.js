@@ -101,6 +101,9 @@ app.get("/", (req, res) => {
   res.render("home.ejs");
 });
 
+app.get("/Admin",(req,res)=>{
+  res.render('AdminDashboard.ejs');
+})
 
 // Server
 app.listen(8080, () => console.log("Running on Port 8080"));
