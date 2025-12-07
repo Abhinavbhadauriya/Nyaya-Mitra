@@ -12,6 +12,8 @@ const { isLogin } = require("../middleware");
 // Home page
 router.get("/", trafficController.traficInfoForm);
 
+//all Fine
+router.get("/allRecords",isLogin,trafficController.allrecords);
 
 // Detail page
 router.get("/detail",trafficController.trafficDetails);

@@ -92,6 +92,7 @@ const courtfeeRoutes = require("./routes/courtfee");
 app.use("/courtfee", courtfeeRoutes);
 
 const userRoutes = require("./routes/user");
+const { isLogin } = require("./middleware");
 app.use("/user", userRoutes);
 
 app.use(express.static(path.join(__dirname, "public")));
@@ -101,7 +102,7 @@ app.get("/", (req, res) => {
   res.render("home.ejs");
 });
 
-app.get("/Admin",(req,res)=>{
+app.get("/Admin",isLogin,(req,res)=>{
   res.render('AdminDashboard.ejs');
 })
 

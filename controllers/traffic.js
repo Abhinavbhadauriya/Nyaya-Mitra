@@ -56,3 +56,15 @@ module.exports.deleteTrafficVoilationDetail=async (req, res) => {
     res.redirect("/traffic/detail");
   }
 };
+
+//all Records
+module.exports.allrecords=async(req,res)=>{
+    try{
+        const allrecords= await Traffic.find();
+        console.log(allrecords);
+        res.render("traffic/allrecords",{allrecords});
+    }catch(err){
+        req.flash("error","Can Not Find Records, Please Try Again");
+        res.redirect("/Admin");
+    }  
+}

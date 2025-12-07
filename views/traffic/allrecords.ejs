@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Traffic Records</title>
+<style>
+    body{
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        background: #f4f4f4;
+    }
+    h2{
+        text-align: center;
+    }
+    table{
+        width: 100%;
+        border-collapse: collapse;
+        background: white;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    th, td{
+        padding: 12px;
+        border: 1px solid #ddd;
+        text-align: center;
+    }
+    th{
+        background: #4CAF50;
+        color: white;
+    }
+</style>
+</head>
+<body>
+
+<h2>🚔 Traffic Violation Records</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Vehicle Number</th>
+            <th>Owner</th>
+            <th>Mobile</th>
+            <th>Violation</th>
+            <th>Location</th>
+            <th>Fine</th>
+            <th>Status</th>
+            <th>Challan No.</th>
+            <th>Payment Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% allrecords.forEach(record => { %>
+        <tr>
+            <td><%= record.vehicleNumber %></td>
+            <td><%= record.ownerName %></td>
+            <td><%= record.mobileNumber %></td>
+            <td><%= record.violationType %></td>
+            <td><%= record.location %></td>
+            <td><%= record.fineAmount %></td>
+            <td><%= record.status %></td>
+            <td><%= record.eChallanNumber %></td>
+            <td><%= record.paymentDate ? new Date(record.paymentDate).toLocaleString() : "N/A" %></td>
+        </tr>
+        <% }) %>
+    </tbody>
+</table>
+
+</body>
+</html>
