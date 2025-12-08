@@ -1,10 +1,16 @@
 module.exports.isLogin = (req, res, next) => {
-    if (!req.isAuthenticated()) {  
-        req.session.redirectUrl=req.originalUrl;
-        return res.redirect('/user/login');
+  if (!req.user && !req.member) {
+    req.session.redirectUrl = req.originalUrl;
+
+    if (req.originalUrl.startsWith("/member")) {
+      return res.redirect("/member/login");
     }
-    next(); 
+
+    return res.redirect("/user/login");
+  }
+  next();
 };
+
 
 module.exports.saveRedirectUrl=(req,res,next)=>{
     if(req.session.redirectUrl){
@@ -12,3 +18,11 @@ module.exports.saveRedirectUrl=(req,res,next)=>{
     }
     next();
 }
+
+module.exports.isAdmin = (req, res, next) => {
+  if (!req.user || req.user.role !== "Admin") {
+    req.flash("error", "Admin access only");
+    return res.redirect("/user/login");
+  }
+  next();
+};

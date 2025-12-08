@@ -1,41 +1,20 @@
+
 <div class="card " style="width: 21rem;"> 
-   <b><h2>Admin Dashboard</h2></b> 
+   <b><h2>Member Dashboard</h2></b> 
 </div>
 <link rel="stylesheet" href="/css/dashboard.css">
 
-<div class="row">
-    <div class="col-6">
-        Add New Member
-        <form action="/member/singup">
-            <button>Add</button>
-        </form>
-    </div>
-    <div class="col-6">
-        New Law
-        <form action="/laws/new">
-            <button>Add</button>
-        </form>
-    </div>
 
-    <div class="col-6">
+<div class="row">
+     <div class="col-6">
         New FAQ
         <form action="/faqs/new">
             <button>Add</button>
         </form>
     </div>
-</div>
-
-<div class="row">
     <div class="col-6">
         New Live Stream
         <form action="/streams/new">
-            <button>Add</button>
-        </form>
-    </div>
-
-    <div class="col-6">
-        New Traffic Voilation
-        <form action="/traffic/new">
             <button>Add</button>
         </form>
     </div>
@@ -47,8 +26,13 @@
     </div>
 </div>
 
-
 <div class="row">
+    <div class="col-6">
+        New Traffic Voilation
+        <form action="/traffic/new">
+            <button>Add</button>
+        </form>
+    </div>
     <div class="col-6">
         All Traffic Voilation
         <form action="/traffic/allRecords">
@@ -61,12 +45,4 @@
             <button>Show</button>
         </form>
     </div>
-    <div class="col-6">
-        All Members
-        <form action="/member/allmembers">
-            <button>Show</button>
-        </form>
-    </div>
-
-    
 </div>

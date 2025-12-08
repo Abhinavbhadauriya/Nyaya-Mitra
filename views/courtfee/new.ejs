@@ -1,0 +1,33 @@
+<link rel="stylesheet" href="/css/newtraffic.css">
+<h2 class="mb-4 text-center">Add Court Fee</h2>
+<form action="/courtfee/newsave" method="post">
+    <div class="mb-3">
+        <label for="caseId" class="form-label">Case ID</label>
+        <input type="text" class="form-control" id="caseId" name="caseId" required>
+    </div>
+    <div class="mb-3">
+        <label for="partyName" class="form-label">Party Name</label>
+        <input type="text" class="form-control" id="partyName" name="partyName" required>
+    </div>
+    <div class="mb-3">
+        <label for="feeType" class="form-label">Fee Type</label>
+        <select class="form-select" id="feeType" name="feeType" required>
+            <option value="">Select Fee Type</option>
+            <option value="Filing Fee">Filing Fee</option>
+            <option value="Certified Copy">Certified Copy</option>
+            <option value="Misc">Misc</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="amount" class="form-label">Amount</label>
+        <input type="number" class="form-control" id="amount" name="amount" required>
+    </div>
+    <div class="mb-3">
+        <label for="status" class="form-label">Status</label>
+        <select class="form-select" id="status" name="status">
+            <option value="Pending">Pending</option>
+            <option value="Paid">Paid</option>
+        </select>
+    </div>
+    <button class="btn btn-dark w-100">Add</button>
+</form>

@@ -19,9 +19,14 @@
         <li class="nav-item"><a class="nav-link " href="/streams">Court Streaming</a></li>
         <li class="nav-item"><a class="nav-link " href="/traffic">Traffic Voilation</a></li>
         <li class="nav-item"><a class="nav-link " href="/epayment">E-Payment</a></li>
-        <%if(currUser){%>
-          <li class="nav-item"><a class="nav-link" href="/Admin">Dashboard</a></li>
-           <% } %>
+        <% if(currUser && currUser.role === "Admin") { %>
+          <li class="nav-item"><a class="nav-link" href="/admin">Admin Dashboard</a></li>
+        <% } %>
+
+        <% if(currUser && currUser.role === "Member") { %>
+          <li class="nav-item"><a class="nav-link" href="/member">Member Dashboard</a></li>
+        <% } %>
+          
       </ul>
     </div>
     <div class="collapse navbar-collapse " id="navbarNav">
@@ -32,6 +37,7 @@
 
         <% } %>
         <%if(!currUser){%>
+        <li class="nav-item"><a class="nav-link " href="/member/login">Member Login</a></li>
         <li class="nav-item"><a class="nav-link " href="/user"> Admin SignUp</a></li>
         <li class="nav-item"><a class="nav-link " href="/user/login">Admin Login</a></li>
         <% } %>

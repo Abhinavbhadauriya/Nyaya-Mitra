@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Court Fee Records</title>
+<style>
+    body{
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        background: #f4f4f4;
+    }
+    h2{
+        text-align: center;
+    }
+    table{
+        width: 100%;
+        border-collapse: collapse;
+        background: white;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    th, td{
+        padding: 12px;
+        border: 1px solid #ddd;
+        text-align: center;
+    }
+    th{
+        background: #007bff;
+        color: white;
+    }
+</style>
+</head>
+<body>
+
+<h2>📑 Court Fee Records</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Case ID</th>
+            <th>Party Name</th>
+            <th>Fee Type</th>
+            <th>Amount</th>
+            <th>Status</th>
+            <th>Created At</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% allrecords.forEach(record => { %>
+        <tr>
+            <td><%= record.caseId %></td>
+            <td><%= record.partyName %></td>
+            <td><%= record.feeType %></td>
+            <td>₹<%= record.amount %></td>
+            <td><%= record.status %></td>
+            <td><%= new Date(record.createdAt).toLocaleString() %></td>
+        </tr>
+        <% }) %>
+    </tbody>
+</table>
+
+</body>
+</html>

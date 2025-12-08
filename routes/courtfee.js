@@ -1,5 +1,6 @@
 const express=require('express')
 const courtFee=require('../models/courtfee');
+const { allrecords } = require('../controllers/traffic');
 const router=express.Router();
 
 router.get('/',(req,res)=>{
@@ -21,5 +22,34 @@ router.get('/detail', async (req, res) => {
   console.log(finedata);
   return res.render("courtfee/detail", { finedata }); 
 });
+
+router.get('/new',(req,res)=>{
+  res.render('courtfee/new');
+})
+
+router.post("/newsave",async(req,res)=>{
+  try{
+  const newcase=new courtFee(req.body);
+  await newcase.save();
+  console.log(newcase);
+  req.flash("success","New Case Saved");
+  res.redirect("/courtfee/allrecords");
+  }catch(err){
+    console.log(err);
+    req.flash('error','Case Not Save');
+    res.redirect("/courtfee/new");
+  }
+})
+
+router.get("/allrecords",async(req,res)=>{
+  try{
+    const allrecords=await courtFee.find();
+    res.render("courtfee/allrecords",{allrecords})
+  }catch(err){
+    console.log(err);
+    req.flash("error","Something went Wrong,Try Again !");
+    res.redirect("/");
+  }
+})
 
 module.exports=router;

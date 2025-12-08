@@ -1,15 +1,16 @@
-const mongoose=require('mongoose');
-const schema=mongoose.Schema;
+const mongoose=require("mongoose");
+const Schema=mongoose.Schema;
 
 const passportLocalMongoose=require('passport-local-mongoose');
 
-const userSchema=new schema(
+
+const memberSchema=new Schema(
     {
         name:{
             type:String,
             required:true
         },
-        email:{
+         email:{
             type:String,
             required:true
         },
@@ -19,12 +20,12 @@ const userSchema=new schema(
         },
         role:{
             type : String,
-            default :"Admin"
+            default :"Member"
         }
+
     }
-);
+)
 
-//plugin automatically add username and password and apply salting and hashing
-userSchema.plugin(passportLocalMongoose);
+memberSchema.plugin(passportLocalMongoose);
 
-module.exports=mongoose.model('user',userSchema);
+module.exports=mongoose.model('member',memberSchema);

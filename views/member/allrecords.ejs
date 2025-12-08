@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Court Fee Records</title>
+<style>
+    body{
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        background: #f4f4f4;
+    }
+    h2{
+        text-align: center;
+    }
+    table{
+        width: 100%;
+        border-collapse: collapse;
+        background: white;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    th, td{
+        padding: 12px;
+        border: 1px solid #ddd;
+        text-align: center;
+    }
+    th{
+        background: #007bff;
+        color: white;
+    }
+</style>
+</head>
+<body>
+
+
+</head>
+<body>
+  <div class="container mt-4">
+    <h2 class="text-center mb-3">All Members Details</h2>
+
+    <table class="table table-bordered table-striped text-center">
+      <thead class="table-dark">
+        <tr>
+          <th>Sr. No</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Mobile Number</th>
+          <th>Remove</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% allmembers.forEach((member, index) => { %>
+          <tr>
+            <td><%= index + 1 %></td>
+            <td><%= member.name %></td>
+            <td><%= member.email %></td>
+            <td><%= member.number%></td>
+            <td><form action="/member/remove/<%=member._id %>?_method=delete" method="post">
+                <button >Remove</button>
+            </form></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

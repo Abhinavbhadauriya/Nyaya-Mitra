@@ -22,6 +22,7 @@ app.use(flash());
 const passport=require('passport')
 const LocalStrategy=require('passport-local')
 const user=require('./models/user')
+const member=require('./models/member')
 app.use(session({
   secret: process.env.SECRET,  
   resave: false,
@@ -42,10 +43,20 @@ app.use((req, res, next) => {
   
   next();
 });
+passport.use("userLocal", new LocalStrategy(user.authenticate()));
+passport.use("memberLocal", new LocalStrategy(member.authenticate()));
 
-passport.use(new LocalStrategy(user.authenticate()));
-passport.serializeUser(user.serializeUser());
-passport.deserializeUser(user.deserializeUser());
+passport.serializeUser((user, done) => {
+  done(null, { id: user.id, role: user.role });
+});
+
+passport.deserializeUser((obj, done) => {
+  if (obj.role === "Admin") {
+    user.findById(obj.id).then(user => done(null, user));
+  } else if (obj.role === "Member") {
+    member.findById(obj.id).then(member => done(null, member));
+  } 
+});
 
 app.get('/otp', (req, res) => {
   let otp = Math.floor(100000 + Math.random() * 900000);
@@ -59,7 +70,8 @@ app.get('/otp', (req, res) => {
 
 //store currentuser
 app.use((req,res,next)=>{
-  res.locals.currUser=req.user;
+  res.locals.currUser=req.user|| req.member;
+  
   next();
 })
 
@@ -91,6 +103,9 @@ app.use("/epayment", epaymentRoutes);
 const courtfeeRoutes = require("./routes/courtfee");
 app.use("/courtfee", courtfeeRoutes);
 
+const memberRoutes=require("./routes/member")
+app.use("/member",memberRoutes);
+
 const userRoutes = require("./routes/user");
 const { isLogin } = require("./middleware");
 app.use("/user", userRoutes);
@@ -104,6 +119,10 @@ app.get("/", (req, res) => {
 
 app.get("/Admin",isLogin,(req,res)=>{
   res.render('AdminDashboard.ejs');
+})
+
+app.get("/member",isLogin,(req,res)=>{
+  res.render('memberDashboard.ejs');
 })
 
 // Server
