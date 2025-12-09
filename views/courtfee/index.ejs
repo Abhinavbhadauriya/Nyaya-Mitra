@@ -1,12 +1,17 @@
-
+<div id="flash-msg"></div>
 <link rel="stylesheet" href="/css/courtindex.css"><form action="/courtfee/detail" method="get">
     <div class="mb-3">
         <label for="caseId" class="form-label">Case Id</label>
         <input type="text" class="form-control" id="caseId" name="caseId"required>
     </div>
+    
     <div class="mb-3">
         <label for="partyName" class="form-label">Party Name</label>
         <input type="text" class="form-control" id="partyName" name="partyName"required>
+    </div>
+    <div class="mb-3">
+        <label for="mobileNumber" class="form-label">Mobile Number</label>
+        <input type="text" class="form-control" id="mobileNumber" name="mobileNumber"required>
     </div>
         <button class="btn btn-dark " type="button" onclick="sendOtp()">Send OTP</button>
 
@@ -16,14 +21,26 @@
   </div>
     <button class="btn btn-dark"> Search </button>
 </form>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
 <script>
 async function sendOtp() {
   const caseId = document.getElementById("caseId").value;
-  const Name = document.getElementById("partyName").value;
+  const partyName = document.getElementById("partyName").value;
+  const mobile = document.getElementById("mobileNumber").value;
+  const flash = document.getElementById("flash-msg");
 
-  const response = await fetch(`/otp?caseId=${caseId}&partyName=${Name}`);
+  if (!caseId || !partyName || !mobile) {
+    flash.innerHTML = `<div class="alert alert-danger">Fill all fields</div>`;
+    return;
+  }
 
-  alert("OTP Sent!");
+  const res = await axios.get(`/otp?mobileNumber=${mobile}`);
+
+  if (res.data.success) {
+    flash.innerHTML = `<div class="alert alert-success">${res.data.message}</div>`;
+  } else {
+    flash.innerHTML = `<div class="alert alert-danger">${res.data.message}</div>`;
+  }
 }
 </script>

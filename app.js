@@ -8,6 +8,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 const session = require('express-session');
 const flash = require("connect-flash");
+
 // Middleware
 app.use(expressLayouts);  
 app.set("view engine", "ejs");
@@ -58,14 +59,47 @@ passport.deserializeUser((obj, done) => {
   } 
 });
 
-app.get('/otp', (req, res) => {
-  let otp = Math.floor(100000 + Math.random() * 900000);
-  req.session.otp = otp;
+const client = require("./twilio");
 
-  console.log("Generated OTP:", otp);
+app.get('/otp', async (req, res) => {
+  try {
+    const { mobileNumber } = req.query;
 
-  res.redirect("/traffic");
+    if (!mobileNumber) {
+      return res.json({
+        success: false,
+        message: "Mobile number is required"
+      });
+    }
+
+    const otp = Math.floor(100000 + Math.random() * 900000);
+
+    
+    req.session.otp = otp;
+    req.session.otpTime = Date.now();
+
+    
+    await client.messages.create({
+      body: `Your OTP is: ${otp}`,
+      from: process.env.TWILIO_PHONE,
+      to: `+91${mobileNumber}`
+    });
+
+    return res.json({
+      success: true,
+      message: "✅ OTP sent successfully"
+    });
+
+  } catch (error) {
+    console.error("Twilio Error:", error.message);
+
+    return res.json({
+      success: false,
+      message: "Failed to send OTP, OTP Send Only Twilio Registerd user"
+    });
+  }
 });
+
 
 
 //store currentuser

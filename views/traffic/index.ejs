@@ -1,6 +1,7 @@
 <head>
     <link rel="stylesheet" href="/css/trafficindex.css">
 </head>
+<div id="flash-msg"></div>
 <h2 class="mb-4"> TRAFFIC VIOLATION</h2>
 <form action="/traffic/detail" method="get">
     <div class="mb-3">
@@ -21,13 +22,25 @@
 </form>
 
 
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
 <script>
 async function sendOtp() {
   const mobile = document.getElementById("mobileNumber").value;
   const vehicle = document.getElementById("vehicleNumber").value;
+  const flash = document.getElementById("flash-msg");
 
-  const response = await fetch(`/otp?mobileNumber=${mobile}&vehicleNumber=${vehicle}`);
+  if (!mobile || !vehicle) {
+    flash.innerHTML = `<div class="alert alert-danger">Fill all fields</div>`;
+    return;
+  }
 
-  alert("OTP Sent!");
+  const res = await axios.get(`/otp?mobileNumber=${mobile}`);
+
+  if (res.data.success) {
+    flash.innerHTML = `<div class="alert alert-success">${res.data.message}</div>`;
+  } else {
+    flash.innerHTML = `<div class="alert alert-danger">${res.data.message}</div>`;
+  }
 }
 </script>

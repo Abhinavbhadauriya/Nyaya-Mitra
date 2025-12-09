@@ -9,18 +9,25 @@ router.get('/',(req,res)=>{
 
 router.get('/detail', async (req, res) => {
 
-  let { caseId, partyName, otp } = req.query;
+  let { caseId, partyName, otp, mobileNumber } = req.query;
 
   if (!otp || otp != req.session.otp) {
     req.flash("error", "Please enter correct OTP");
-    return res.redirect("/courtfee");   
+    return res.redirect("/courtfee");
   }
 
-  const finedata = await courtFee.findOne({ caseId, partyName });
-
-
+  const finedata = await courtFee.findOne({
+    caseId: caseId.trim(),
+    partyName: partyName.trim(),
+    mobileNumber: mobileNumber.trim()
+  });
   console.log(finedata);
-  return res.render("courtfee/detail", { finedata }); 
+  if (!finedata) {
+    req.flash("error", "No record found");
+    return res.redirect("/courtfee");
+  }
+
+  return res.render("courtfee/detail", { finedata });
 });
 
 router.get('/new',(req,res)=>{
