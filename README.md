@@ -1,5 +1,5 @@
 # NayaMitra
-For Now Otp Send On Console window Not any Msg platform
+Otp Send On Twilio registerd users number only 
 
 
 
