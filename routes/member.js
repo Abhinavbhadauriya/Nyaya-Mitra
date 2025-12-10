@@ -44,7 +44,7 @@ router.post("/login",
   }
 );
 
-router.get("/allmembers",async(req,res)=>{
+router.get("/allmembers",isAdmin,isLogin,async(req,res)=>{
   try{
      const allmembers=await member.find();
     res.render('member/allrecords',{allmembers})
@@ -56,7 +56,7 @@ router.get("/allmembers",async(req,res)=>{
  
 })
 
-router.delete("/remove/:id",async(req,res)=>{
+router.delete("/remove/:id",isAdmin,isLogin,async(req,res)=>{
   try{
     const {id}=req.params;
     const deletemember=await member.findByIdAndDelete(id);

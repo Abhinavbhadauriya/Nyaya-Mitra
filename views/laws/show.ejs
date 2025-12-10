@@ -29,7 +29,7 @@
 
       <p class="text-muted mt-2"><strong>Last Updated:</strong> <%= new Date(law.last_updated).toDateString() %></p>
     </div>
-    <% if(currUser){ %>
+    <% if(currUser && currUser.role === "Admin"){ %>
     <form action="/laws/<%= law._id %>?_method=Delete" method="post">
         <button class="btn btn-dark">Delete Law</button>
     </form>

@@ -3,23 +3,23 @@ const router=express.Router();
 
 const laws=require("../models/law");
 const lawController=require('../controllers/laws');
-const { isLogin } = require("../middleware");
+const { isLogin,isAdmin } = require("../middleware");
 
 //index
 router.get("/", lawController.index);
 
 //new law
-router.get("/new",isLogin,lawController.newLawForm);
+router.get("/new",isAdmin,isLogin,lawController.newLawForm);
 
 //add law into Db
-router.post("/",isLogin,lawController.saveLawToDB );
+router.post("/",isAdmin,isLogin,lawController.saveLawToDB );
 
 
 //show law
 router.get("/:id",lawController.lawDetail);
 
 //Delete Law
-router.delete("/:id",isLogin,lawController.deleteLaw);
+router.delete("/:id",isAdmin,isLogin,lawController.deleteLaw);
 
 
 
