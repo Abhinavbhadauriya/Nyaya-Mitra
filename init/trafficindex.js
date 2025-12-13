@@ -3,7 +3,7 @@ const Traffic=require('../models/taffic');
 
 const mongoose=require('mongoose');
 
-const mongourl="mongodb://127.0.0.1:27017/nayamitra";
+const mongourl=process.env.MONGOURL;
 
 async function main() {
     await mongoose.connect(mongourl);

@@ -2,7 +2,8 @@ const mongoose=require('mongoose');
 const initfaqData=require('./faqdata');
 const faqs=require('../models/faq');
 
-const mongourl="mongodb://127.0.0.1:27017/nayamitra";
+
+const mongourl=process.env.MONGOURL;
 
 async function main() {
     await mongoose.connect(mongourl)
@@ -20,7 +21,7 @@ main().then(()=>{
 
 //insert data
 const initData=async()=>{
-    await faqs.deleteMany({});
+    
     await faqs.insertMany(initfaqData.faqData);
     console.log("data is inserted");
 }
