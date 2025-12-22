@@ -110,7 +110,7 @@ app.use((req,res,next)=>{
 })
 
 // MongoDB connection
-const mongourl = process.env.MONGOURL
+const mongourl =process.env.MONGOURL
 async function main() {
   await mongoose.connect(mongourl);
 }

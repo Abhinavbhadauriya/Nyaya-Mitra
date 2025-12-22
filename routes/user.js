@@ -3,6 +3,7 @@ const router=express.Router();
 const user=require('../models/user');
 const passport=require('passport')
 const { isLogin, saveRedirectUrl } = require("../middleware");
+const userController=require('../controllers/user')
 
 router.get("/",(req,res)=>{
     res.render("user/verify")
@@ -22,29 +23,7 @@ router.get("/signup", (req, res) => {
 
 
 //save user
-router.post('/register', async (req, res) => {
-    console.log(req.body)
-  try {
-    const {name, username, email, number, password } = req.body;
-    
-    const newUser = new user({name, username, email, number });
-    
-
-    const registerUser=await user.register(newUser, password);
-    console.log(registerUser);
-    req.logIn(registerUser,(err)=>{
-      if(err){
-       return res.redirect('/user');
-      }
-      req.flash("success","welcome");
-      res.redirect("/");
-    })
-  } catch (err) {
-    console.error(err);
-   req.flash("error","user already present");
-   res.redirect("/user");
-  }
-});
+router.post('/register',userController.saveUser );
 
 router.get("/login",(req,res)=>{
     res.render("user/loginuser");
