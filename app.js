@@ -147,7 +147,7 @@ app.use("/user", userRoutes);
 app.use(express.static(path.join(__dirname, "public")));
 
 // Root
-app.get("/", (req, res) => {
+app.get("/NyayaMitra", (req, res) => {
   res.render("home.ejs");
 });
 

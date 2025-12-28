@@ -23,7 +23,7 @@ router.post("/login",
   }),
   (req, res) => {
     req.flash("success", "Welcome Member")
-    let redirectUrl = res.locals.redirectUrl || "/laws";
+    let redirectUrl = res.locals.redirectUrl || "/NyayaMitra";
     res.redirect(redirectUrl); 
   }
 );

@@ -37,7 +37,7 @@ router.post("/login",
   }),
   (req, res) => {    
     req.flash("success","Welcome")
-    let redirectUrl=res.locals.redirectUrl||"/";
+    let redirectUrl=res.locals.redirectUrl||"/NyayaMitra";
     res.redirect(redirectUrl); 
   }
 );
@@ -47,11 +47,11 @@ router.get("/logout", isLogin, (req, res, next) => {
         if (err) {
             console.log(err);
             req.flash("error", "Something Went Wrong");
-            return res.redirect("/"); 
+            return res.redirect("/NyayaMitra"); 
         }
 
         req.flash("success", "Logged Out Successfully");
-        res.redirect("/");              
+        res.redirect("/NyayaMitra");              
     });
 });
 
