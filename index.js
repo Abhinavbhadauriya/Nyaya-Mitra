@@ -146,6 +146,10 @@ app.use("/user", userRoutes);
 
 app.use(express.static(path.join(__dirname, "public")));
 
+app.get('/',(req,res)=>{
+  res.render("home.ejs");
+})
+
 // Root
 app.get("/NyayaMitra", (req, res) => {
   res.render("home.ejs");
@@ -158,6 +162,8 @@ app.get("/Admin",isLogin,(req,res)=>{
 app.get("/member",isLogin,(req,res)=>{
   res.render('memberDashboard.ejs');
 })
+
+
 
 // Server
 app.listen(8000, () => console.log("Running on Port 8080"));
