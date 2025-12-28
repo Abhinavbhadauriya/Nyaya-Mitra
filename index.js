@@ -160,4 +160,4 @@ app.get("/member",isLogin,(req,res)=>{
 })
 
 // Server
-app.listen(8080, () => console.log("Running on Port 8080"));
+app.listen(8000, () => console.log("Running on Port 8080"));
