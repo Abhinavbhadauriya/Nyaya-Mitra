@@ -3,10 +3,7 @@ module.exports.saveMember=async (req, res) => {
     console.log(req.body)
   try {
     const {name, username, email, number, password } = req.body;
-    
     const newmember = new member({name, username, email, number });
-    
-
     const registerUser=await member.register(newmember, password);
     console.log(registerUser);
       req.flash("success","Member Registerd Successfully");
@@ -26,8 +23,7 @@ module.exports.allMembers=async(req,res)=>{
     console.log(err);
     req.flash('error',"Something went wrong ,please try again");
     res.redirect('/');
-  }
- 
+  } 
 }
 
 module.exports.deleteMember=async(req,res)=>{
