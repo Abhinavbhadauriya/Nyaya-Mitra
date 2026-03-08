@@ -71,23 +71,17 @@ app.get('/otp', async (req, res) => {
         message: "Mobile number is required"
       });
     }
-
     const otp = Math.floor(100000 + Math.random() * 900000);
-
-    
     req.session.otp = otp;
     req.session.otpTime = Date.now();
-
-    
     await client.messages.create({
       body: `Your OTP is: ${otp}`,
       from: process.env.TWILIO_PHONE,
       to: `+91${mobileNumber}`
     });
-
     return res.json({
       success: true,
-      message: "✅ OTP sent successfully"
+      message: "OTP sent successfully"
     });
 
   } catch (error) {
@@ -99,13 +93,9 @@ app.get('/otp', async (req, res) => {
     });
   }
 });
-
-
-
 //store currentuser
 app.use((req,res,next)=>{
   res.locals.currUser=req.user|| req.member;
-  
   next();
 })
 
