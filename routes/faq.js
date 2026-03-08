@@ -1,9 +1,6 @@
 const express=require('express');
 const router=express.Router();
-
-//require faq model
 const faqs=require('../models/faq');
-// const { router } = require('./law');
 const faqcontroller=require('../controllers/faqs');
 const { isLogin } = require('../middleware');
 
